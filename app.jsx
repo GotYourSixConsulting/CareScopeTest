@@ -1,15 +1,48 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
-// Import necessary icons from Lucide for better aesthetics
-import { 
-  Users, Building2, CalendarCheck, AlertTriangle, ChevronDown, LogOut, 
-  TrendingUp, Compass, ClipboardList, Clock, CheckCircle, Home, Calendar, 
-  Settings, ArrowLeft, Plus, Trash2, Edit, Save, ArrowBigLeftDash, Download, 
-  FileText, ClipboardList as ClipboardListIcon, FileWarning, Briefcase, 
-  XCircle, CheckSquare, MessageSquare, BarChart3, GraduationCap, 
-  ClipboardCheck, ArrowRight, Ambulance, Syringe, Bed, Dumbbell, Utensils, 
-  Zap, Shield, BookOpen, Flame, LayoutDashboard, Lock, UserPlus, UserCog, Search,
-  Upload, FileCheck, ChefHat, Printer, Phone, Mail, User, Bell, List
-} from 'lucide-react';
+/* global React, ReactDOM */
+
+// Pull hooks from the global React (since we are not importing from 'react')
+const { useState, useEffect, useCallback, useMemo } = React;
+
+/**
+ * Icon stubs: your DOCX imports many lucide-react icons.
+ * In this no-build approach, we stub them to simple spans so the app runs.
+ * You can later replace with inline SVGs or a CDN icon solution.
+ */
+const __iconNames = [
+  "Users","Building2","CalendarCheck","AlertTriangle","ChevronDown","LogOut",
+  "TrendingUp","Compass","ClipboardList","Clock","CheckCircle","Home","Calendar",
+  "Settings","ArrowLeft","Plus","Trash2","Edit","Save","ArrowBigLeftDash","Download",
+  "FileText","ClipboardListIcon","FileWarning","Briefcase","XCircle","CheckSquare",
+  "MessageSquare","BarChart3","GraduationCap","ClipboardCheck","ArrowRight",
+  "Ambulance","Syringe","Bed","Dumbbell","Utensils","Zap","Shield","BookOpen",
+  "Flame","LayoutDashboard","Lock","UserPlus","UserCog","Search","Upload","FileCheck",
+  "ChefHat","Printer","Phone","Mail","User","Bell","List"
+];
+
+function __IconStub({ label, className }) {
+  // keep className so your layout doesn't explode; renders nothing visible except label if you want it
+  return React.createElement("span", { className, "data-icon": label, title: label });
+}
+
+for (const name of __iconNames) {
+  // Define globals matching <Ambulance /> etc.
+  // Using var so it becomes a true global in this script context.
+  // eslint-disable-next-line no-var
+  var _tmp = null;
+  window[name] = (props) => __IconStub({ ...props, label: name });
+}
+
+// Alias used in your import: ClipboardList as ClipboardListIcon
+window.ClipboardListIcon = window.ClipboardList;
+
+
+//This is the end of the SHIM code  -Brendan
+
+
+
+
+
+
 
 /**
  * CareScope360 Compliance App - Complete Fixed Version
@@ -68,7 +101,7 @@ const INITIAL_COMMUNITIES = [
     { id: '2', name: 'Powell Valley Assisted Living', region: 'Willamette Valley', license: 'ALF', lastSurveyDate: '2025-01-20', edName: 'Mike Ross', edPhone: '555-0201', edEmail: 'mike@powell.com', nurseName: 'Rachel Zane', nursePhone: '555-0202', nurseEmail: 'rachel@powell.com' },
     { id: '3', name: 'Powell Valley Memory Care', region: 'Willamette Valley', license: 'MC', lastSurveyDate: '2025-01-20', edName: 'Harvey Specter', edPhone: '555-0301', edEmail: 'harvey@powellmc.com', nurseName: 'Donna Paulsen', nursePhone: '555-0302', nurseEmail: 'donna@powellmc.com' },
     { id: '4', name: 'The Cottages Memory Care', region: 'Coast', license: 'MC', lastSurveyDate: '2023-11-01', edName: 'Louis Litt', edPhone: '555-0401', edEmail: 'louis@cottages.com', nurseName: 'Katrina Bennett', nursePhone: '555-0402', nurseEmail: 'katrina@cottages.com' },
-    { id: '5', name: 'Mcminnville Memory Care', region: 'Willamette Valley', license: 'MC', lastSurveyDate: '2024-09-01', edName: 'Samantha Wheeler', edPhone: '555-0501', edEmail: 'sam@mcminnville.com', nurseName: 'Alex Williams', nursePhone: '555-0502', nurseEmail: 'alex@mcminnville.com' },
+    { id: '5', name: 'Mcminnville Memory Care', region: 'WillamAppette Valley', license: 'MC', lastSurveyDate: '2024-09-01', edName: 'Samantha Wheeler', edPhone: '555-0501', edEmail: 'sam@mcminnville.com', nurseName: 'Alex Williams', nursePhone: '555-0502', nurseEmail: 'alex@mcminnville.com' },
     { id: '6', name: 'Evergreen Memory Care', region: 'Coast', license: 'MC', lastSurveyDate: '2024-06-10', edName: 'Robert Zane', edPhone: '555-0601', edEmail: 'robert@evergreenmc.com', nurseName: 'Laura Tanner', nursePhone: '555-0602', nurseEmail: 'laura@evergreenmc.com' },
     { id: '7', name: 'Evergreen Assisted Living', region: 'Coast', license: 'ALF', lastSurveyDate: '2024-06-10', edName: 'Jessica Pearson', edPhone: '555-0701', edEmail: 'jessica@evergreenalf.com', nurseName: 'Jeff Malone', nursePhone: '555-0702', nurseEmail: 'jeff@evergreenalf.com' },
     { id: '8', name: 'Timber Pointe Assisted Living', region: 'Central Oregon', license: 'ALF', lastSurveyDate: '2023-08-05', edName: 'Dana Scott', edPhone: '555-0801', edEmail: 'scottie@timber.com', nurseName: 'Edward Darby', nursePhone: '555-0802', nurseEmail: 'edward@timber.com' },
@@ -2615,5 +2648,3 @@ const App = () => {
         </div>
     );
 };
-
-export default App;
