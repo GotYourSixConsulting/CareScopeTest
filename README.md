@@ -1,10 +1,5 @@
-# CareScopeTest
+# CareScope Compliance
 Test Deploy
-# CareScopeTest
+# CareScope Compliance
 
-Prototype React application deployed via GitHub Pages.
-
-- No build step
-- React loaded via CDN
-- JSX transpiled in-browser using Babel
-- Intended for testing and internal review
+Compliance management component
