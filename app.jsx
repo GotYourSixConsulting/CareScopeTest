@@ -36,16 +36,13 @@ for (const name of __iconNames) {
 window.ClipboardListIcon = window.ClipboardList;
 
 
-//This is the end of the SHIM code  -Brendan
-
-
-
+//This is the end of the SHIM code. All I do is remove the import from Gemini and paste the rest below. -Brendan
 
 
 
 
 /**
- * CareScope360 Compliance App - Complete Fixed Version
+ * CareScope360 Compliance App - Complete Fixed Version  Copyright 2026 CareScope, LLC
  */
 
 // --- CONSTANTS & UTILITY FUNCTIONS ---
